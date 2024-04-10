@@ -11,6 +11,12 @@
 		FA37D9672BBB2F620094589F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D9662BBB2F620094589F /* ContentView.swift */; };
 		FA37D9692BBB2F640094589F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA37D9682BBB2F640094589F /* Assets.xcassets */; };
 		FA37D96C2BBB2F640094589F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA37D96B2BBB2F640094589F /* Preview Assets.xcassets */; };
+		FA37D9732BBB2FB40094589F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D9722BBB2FB40094589F /* AppInfo.swift */; };
+		FA37D9752BBB33620094589F /* YearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D9742BBB33620094589F /* YearPicker.swift */; };
+		FA37D9772BBB39C50094589F /* OrionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D9762BBB39C50094589F /* OrionView.swift */; };
+		FA37D9792BBB3A6F0094589F /* MonthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D9782BBB3A6F0094589F /* MonthPicker.swift */; };
+		FA37D97B2BBB49170094589F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D97A2BBB49170094589F /* CalendarView.swift */; };
+		FA37D97D2BBB9EEB0094589F /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D97C2BBB9EEB0094589F /* PeopleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		FA37D9662BBB2F620094589F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FA37D9682BBB2F640094589F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA37D96B2BBB2F640094589F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FA37D9722BBB2FB40094589F /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		FA37D9742BBB33620094589F /* YearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPicker.swift; sourceTree = "<group>"; };
+		FA37D9762BBB39C50094589F /* OrionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrionView.swift; sourceTree = "<group>"; };
+		FA37D9782BBB3A6F0094589F /* MonthPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPicker.swift; sourceTree = "<group>"; };
+		FA37D97A2BBB49170094589F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		FA37D97C2BBB9EEB0094589F /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +67,12 @@
 				FA37D9662BBB2F620094589F /* ContentView.swift */,
 				FA37D9682BBB2F640094589F /* Assets.xcassets */,
 				FA37D96A2BBB2F640094589F /* Preview Content */,
+				FA37D9722BBB2FB40094589F /* AppInfo.swift */,
+				FA37D9762BBB39C50094589F /* OrionView.swift */,
+				FA37D9742BBB33620094589F /* YearPicker.swift */,
+				FA37D9782BBB3A6F0094589F /* MonthPicker.swift */,
+				FA37D97A2BBB49170094589F /* CalendarView.swift */,
+				FA37D97C2BBB9EEB0094589F /* PeopleView.swift */,
 			);
 			path = Orion;
 			sourceTree = "<group>";
@@ -138,7 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA37D9672BBB2F620094589F /* ContentView.swift in Sources */,
+				FA37D97B2BBB49170094589F /* CalendarView.swift in Sources */,
+				FA37D9772BBB39C50094589F /* OrionView.swift in Sources */,
+				FA37D97D2BBB9EEB0094589F /* PeopleView.swift in Sources */,
 				FA37D9652BBB2F620094589F /* OrionApp.swift in Sources */,
+				FA37D9752BBB33620094589F /* YearPicker.swift in Sources */,
+				FA37D9792BBB3A6F0094589F /* MonthPicker.swift in Sources */,
+				FA37D9732BBB2FB40094589F /* AppInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +304,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +334,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
