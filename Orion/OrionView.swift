@@ -53,9 +53,10 @@ struct OrionView: View {
             }
             .frame(maxHeight: .infinity)
             .background(Color.primaryBackground)
-            .navigationBarItems(leading: backButton)
             .navigationBarTitle("", displayMode: .inline)
+            .overlay(backButton, alignment: .topLeading)
         }
+        
     }
     
     var backButton: some View {
@@ -67,6 +68,7 @@ struct OrionView: View {
                     Image(systemName: "arrow.backward")
                         .foregroundColor(.primaryText)
                 }
+                    .padding(.leading, 16)
             )
         } else {
             return AnyView(EmptyView())
