@@ -32,6 +32,19 @@ final class AppInfo: ObservableObject {
         self.yearOptions = [year, year + 1]
 //        populateDays()
     }
+    
+    func onBackPressed() {
+        switch state {
+        case .year:
+            break
+        case .month:
+            state = .year
+        case .people:
+            state = .month
+        case .calendar:
+            state = .people
+        }
+    }
 
     func onNextPressed() {
         switch state {
