@@ -58,7 +58,7 @@ final class AppInfo: ObservableObject {
             break
         }
     }
-
+    
     func clearCalendar() {
         for i in 0..<daysArray.count {
             daysArray[i].people = []
