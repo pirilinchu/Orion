@@ -52,11 +52,19 @@ struct OrionView: View {
                 .padding(.horizontal, 32)
             }
         }
-            .frame(maxHeight: .infinity)
-            .background(Color.primaryBackground)
+        .frame(maxHeight: .infinity)
+        .background(Color.primaryBackground)
+        .onChange(of: appInfo.state) { newState in
+            if newState == .year {
+                appInfo.month = .january
+                appInfo.people = []
+                appInfo.clearCalendar()
+            }
+        }
     }
         
-    
+    // BUTTONS
+    // Backward button view
     private var BackButton: some View {
         Button(action: {
             appInfo.onBackPressed()
