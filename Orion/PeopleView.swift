@@ -75,9 +75,9 @@ struct PeopleView: View {
     }
     
     func isValidName(_ name: String) -> Bool {
-            let nameRegex = "[A-Za-z0-9 ]*"
-            let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
-            return namePredicate.evaluate(with: name)
+        let nameRegex = "[A-Za-z0-9 ]*"
+        let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
+        return namePredicate.evaluate(with: name)
     }
 }
 
