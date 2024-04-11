@@ -1,3 +1,7 @@
+//
+//  Created by Santiago Mendoza on 1/4/24.
+//
+
 import SwiftUI
 
 struct OrionView: View {
@@ -53,25 +57,23 @@ struct OrionView: View {
             }
             .frame(maxHeight: .infinity)
             .background(Color.primaryBackground)
-            .navigationBarTitle("", displayMode: .inline)
-            .overlay(backButton, alignment: .topLeading)
+            .overlay(BackButton, alignment: .topLeading)
         }
         
     }
     
-    var backButton: some View {
+    @ViewBuilder
+    var BackButton: some View {
         if appInfo.state != .year {
-            return AnyView (
-                Button(action: {
-                    appInfo.onBackPressed()
-                }) {
-                    Image(systemName: "arrow.backward")
-                        .foregroundColor(.primaryText)
-                }
-                    .padding(.leading, 16)
-            )
+            Button(action: {
+                appInfo.onBackPressed()
+            }) {
+                Image(systemName: "arrow.backward")
+                    .foregroundColor(.primaryText)
+            }
+            .padding(.leading, 16)
         } else {
-            return AnyView(EmptyView())
+            EmptyView()
         }
     }
 }
