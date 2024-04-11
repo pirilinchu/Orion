@@ -80,7 +80,8 @@ struct CalendarView: View {
                                     .opacity(0.1)
                                 if !day.people.isEmpty {
                                     LazyVGrid(columns: columnsDay, spacing: 1) {
-                                        ForEach(day.people) { person in
+                                        // Limiting to maximum 4 people
+                                        ForEach(day.people.prefix(4)) { person in
                                             ZStack {
                                                 Circle()
                                                     .fill()
@@ -90,16 +91,17 @@ struct CalendarView: View {
                                                     .foregroundStyle(person.color)
                                             }
                                         }
-                                        if day.people.count < 3 {
-                                            Circle()
-                                                .fill()
-                                                .foregroundStyle(Color.clear)
-                                            Circle()
-                                                .fill()
-                                                .foregroundStyle(Color.clear)
+                                        if day.people.count < 4 {
+                                            let additionalCirclesCount = 4 - day.people.count
+                                            ForEach(0..<additionalCirclesCount) { _ in
+                                                Circle()
+                                                    .fill()
+                                                    .foregroundStyle(Color.clear)
+                                            }
                                         }
                                     }
                                     .padding(2)
+
                                 }
                             }
                         }
