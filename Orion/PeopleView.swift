@@ -56,8 +56,10 @@ struct PeopleView: View {
                         )
                         .padding(8)
                     Button {
-                        appInfo.people.append(Person(color: Color.userColors[appInfo.people.count], name: textField))
-                        textField = ""
+                        if !textField.isEmpty && isValidName(textField) {
+                            appInfo.people.append(Person(color: Color.userColors[appInfo.people.count], name: textField))
+                            textField = ""
+                                                }
                     } label: {
                         Image(systemName: "plus.circle.fill")
                             .resizable()
@@ -70,6 +72,12 @@ struct PeopleView: View {
         .padding(16)
         .background(Color.secondaryBackground)
         .cornerRadius(16)
+    }
+    
+    func isValidName(_ name: String) -> Bool {
+            let nameRegex = "[A-Za-z0-9 ]*"
+            let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
+            return namePredicate.evaluate(with: name)
     }
 }
 
