@@ -8,29 +8,40 @@ struct OrionView: View {
     @StateObject var appInfo = AppInfo()
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 16) {
-                switch appInfo.state {
-                case .year:
-                    YearPicker()
-                        .environmentObject(appInfo)
-                        .padding(.horizontal, 32)
-                case .month:
-                    MonthPicker()
-                        .environmentObject(appInfo)
-                        .padding(.horizontal, 32)
-                case .people:
-                    PeopleView()
-                        .environmentObject(appInfo)
-                        .padding(.horizontal, 32)
-                case .calendar:
-                    CalendarView()
-                        .environmentObject(appInfo)
+        VStack(spacing: 16) {
+            switch appInfo.state {
+            case .year:
+                YearPicker()
+                    .environmentObject(appInfo)
+                    .padding(.horizontal, 32)
+            case .month:
+                MonthPicker()
+                    .environmentObject(appInfo)
+                    .padding(.horizontal, 32)
+            case .people:
+                PeopleView()
+                    .environmentObject(appInfo)
+                    .padding(.horizontal, 32)
+            case .calendar:
+                CalendarView()
+                    .environmentObject(appInfo)
+            }
+            
+            HStack {
+                if appInfo.state != .year {
+                    BackButton
+                    ForwardButton
+                } else {
+                    ForwardButton
                 }
+            }
+            .padding(.horizontal, 32)
+
+            if appInfo.state == .calendar {
                 Button(action: {
-                    appInfo.onNextPressed()
+                    appInfo.clearCalendar()
                 }) {
-                    Image(systemName: "arrow.forward")
+                    Image(systemName: "repeat")
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height: 50)
                         .foregroundColor(.primaryBackground)
@@ -39,42 +50,42 @@ struct OrionView: View {
                         .cornerRadius(100)
                 }
                 .padding(.horizontal, 32)
-
-                if appInfo.state == .calendar {
-                    Button(action: {
-                        appInfo.clearCalendar()
-                    }) {
-                        Image(systemName: "repeat")
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .frame(height: 50)
-                            .foregroundColor(.primaryBackground)
-                            .font(.body)
-                            .background(Color.primaryText)
-                            .cornerRadius(100)
-                    }
-                    .padding(.horizontal, 32)
-                }
             }
+        }
             .frame(maxHeight: .infinity)
             .background(Color.primaryBackground)
-            .overlay(BackButton, alignment: .topLeading)
-        }
-        
     }
+        
     
-    @ViewBuilder
-    var BackButton: some View {
-        if appInfo.state != .year {
-            Button(action: {
-                appInfo.onBackPressed()
-            }) {
-                Image(systemName: "arrow.backward")
-                    .foregroundColor(.primaryText)
-            }
-            .padding(.leading, 16)
-        } else {
-            EmptyView()
+    private var BackButton: some View {
+        Button(action: {
+            appInfo.onBackPressed()
+        }) {
+            Image(systemName: "arrow.backward")
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(height: 50)
+                .foregroundColor(.primaryBackground)
+                .font(.body)
+                .background(Color.primaryText)
+                .cornerRadius(100)
         }
+        .padding(.horizontal, 5)
+    }
+
+    // Forward button view
+    private var ForwardButton: some View {
+        Button(action: {
+            appInfo.onNextPressed()
+        }) {
+            Image(systemName: "arrow.forward")
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(height: 50)
+                .foregroundColor(.primaryBackground)
+                .font(.body)
+                .background(Color.primaryText)
+                .cornerRadius(100)
+        }
+        .padding(.horizontal, 5)
     }
 }
 
