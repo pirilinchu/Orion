@@ -86,7 +86,9 @@ struct OrionView: View {
                 .cornerRadius(100)
         }
         .padding(.horizontal, 5)
+        .disabled(appInfo.state == .people && appInfo.people.isEmpty) 
     }
+
 }
 
 #Preview {
