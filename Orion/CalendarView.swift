@@ -10,6 +10,8 @@ import SwiftUI
 struct CalendarView: View {
     @EnvironmentObject var appInfo: AppInfo
     @State private var isEditingName = false
+    @State private var editedName = ""
+    
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
     let columnsDay: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 1), count: 2)
     let week: [String] = ["D", "L", "M", "M", "J", "V", "S"]
@@ -38,7 +40,8 @@ struct CalendarView: View {
                                 .foregroundStyle(Color.primaryText)
                             Spacer()
                             Button(action: {
-                                peop
+                                editedName = person.name
+                                isEditingName = true
                             }) {
                                 Image(systemName: "pencil.line")
                                     .resizable()
@@ -54,10 +57,6 @@ struct CalendarView: View {
                             }
                         }
                     }
-                }
-                .sheet(isPresented: $isEditingName) {
-                    PeopleView()
-                        .environmentObject(appInfo)
                 }
             }
             HStack(spacing: 4) {
@@ -135,6 +134,42 @@ struct CalendarView: View {
                 }
             }
         }
+        .overlay(
+            // Editing overlay
+            VStack {
+                if isEditingName {
+                    HStack {
+                        TextField("Edit Name", text: $editedName, onCommit: {
+                            // Update the person's name in the array when editing is finished
+                            if let index = appInfo.people.firstIndex(where: { $0.name == editedName }) {
+                                appInfo.people[index].name = editedName
+                            }
+                            isEditingName = false // Hide the editing overlay
+                        })
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .font(.body) // Set font size
+                        .frame(width: UIScreen.main.bounds.width / 4) // Adjust the width here
+                        .padding(.horizontal, 4) // Adjust horizontal padding
+                        .padding(.vertical, 2) // Adjust vertical padding
+                        
+                        Button(action: {
+                            // Confirm the edit
+                            if let index = appInfo.people.firstIndex(where: { $0.name == editedName }) {
+                                appInfo.people[index].name = editedName
+                            }
+                            isEditingName = false // Hide the editing overlay
+                        }) {
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                Spacer()
+            }
+        )
+
         .padding(4)
     }
 }

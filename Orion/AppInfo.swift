@@ -107,7 +107,7 @@ struct MyDay: Identifiable {
 struct Person: Identifiable {
     let id = UUID()
     let color: Color
-    let name: String
+    var name: String
     var isOn: Bool = false
 }
 
