@@ -96,6 +96,19 @@ final class AppInfo: ObservableObject {
         }
         state = .calendar
     }
+
+    func edit(person: Person?) {
+        // Prevent duplicated names
+        guard let person, people.first(where: { $0.name == person.name }) == nil else {
+            return
+        }
+
+        guard let index = people.firstIndex(where: { $0.id == person.id }) else {
+            return
+        }
+
+        people[index] = person
+    }
 }
 
 struct MyDay: Identifiable {
