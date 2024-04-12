@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject var appInfo: AppInfo
+    @State private var isEditingName = false
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
     let columnsDay: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 1), count: 2)
     let week: [String] = ["D", "L", "M", "M", "J", "V", "S"]
@@ -36,6 +37,14 @@ struct CalendarView: View {
                             Text(person.name)
                                 .foregroundStyle(Color.primaryText)
                             Spacer()
+                            Button(action: {
+                                peop
+                            }) {
+                                Image(systemName: "pencil.line")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(.white)
+                            }
                         }
                         .padding(.vertical, 4)
                         .padding(.horizontal, 8)
@@ -45,6 +54,10 @@ struct CalendarView: View {
                             }
                         }
                     }
+                }
+                .sheet(isPresented: $isEditingName) {
+                    PeopleView()
+                        .environmentObject(appInfo)
                 }
             }
             HStack(spacing: 4) {
