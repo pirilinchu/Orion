@@ -46,15 +46,7 @@ struct PeopleView: View {
             }
             if appInfo.people.count < 5 {
                 HStack {
-                    TextField("Escribe un nombre", text: $textField)
-                        .frame(height: 24)
-                        .foregroundStyle(Color.primaryText)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
-                        .padding(8)
+                    OTextField(text: $textField)
                     Button {
                         if !textField.isEmpty && isValidName(textField) {
                             appInfo.people.append(Person(color: Color.userColors[appInfo.people.count], name: textField))
