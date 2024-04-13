@@ -38,6 +38,7 @@ struct CalendarView: View {
             }
             .frame(height: 50)
             CalendarGrid()
+            Spacer()
         }
         .overlay {
             if isEditing {

@@ -28,10 +28,13 @@ struct OrionView: View {
             }
             
             HStack {
-                if appInfo.state != .year {
+                if appInfo.state == .calendar {
                     BackButton
+                }
+                else if appInfo.state == .year {
                     ForwardButton
                 } else {
+                    BackButton
                     ForwardButton
                 }
             }
@@ -50,6 +53,11 @@ struct OrionView: View {
                         .cornerRadius(100)
                 }
                 .padding(.horizontal, 32)
+                Spacer()
+                HStack {
+                    ShareButton
+                    Spacer()
+                }
             }
         }
         .frame(maxHeight: .infinity)
@@ -95,6 +103,23 @@ struct OrionView: View {
         }
         .padding(.horizontal, 5)
         .disabled(appInfo.state == .people && appInfo.people.isEmpty) 
+    }
+    
+    // Share-Export button view
+    private var ShareButton: some View {
+        Button(action: {
+            let shareURL = URL(string: "https://apps.apple.com/us/app/orion/id6447198696")!
+            let activityViewController = UIActivityViewController(activityItems: [shareURL], applicationActivities: nil)
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.rootViewController?.present(activityViewController, animated: true, completion: nil)
+            }
+
+        }) {
+            Label("", systemImage: "square.and.arrow.up")
+                .foregroundColor(.white)
+        }
+        .padding()
     }
 
 }
