@@ -13,9 +13,7 @@ struct CalendarView: View {
     @State private var isEditing = false
     @State private var currentPerson: Person? = nil
     @State private var text: String = ""
-    @State private var text1 = "Your text here"
     @State private var renderedImage = Image(systemName: "photo")
-    @Environment(\.displayScale) var displayScale
     
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
     let columnsDay: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 1), count: 2)
@@ -43,18 +41,20 @@ struct CalendarView: View {
             CalendarGrid()
             Spacer()
             HStack {
-                Button(action: {
-                }) {
-                    ShareLink(item: renderedImage, preview: SharePreview(Text("Shared image"), image: renderedImage)) {
-                    Label("", systemImage: "square.and.arrow.up")
-                          .foregroundColor(.white)
-                  }
+                Button(action: exportImage) {
+                Label("", systemImage: "square.and.arrow.up")
+                    .foregroundColor(.white)
                 }
                 .padding()
-
+                
                 Spacer()
+
+                ShareLink(item: renderedImage, preview: SharePreview(Text("Shared Calendar"), image: renderedImage)) {
+                Label("", systemImage: "square.and.arrow.up")
+                    .foregroundColor(.white)
+                }
+                .padding()
             }
-//            .onAppear { render() }
         }
         .overlay {
             if isEditing {
@@ -90,6 +90,20 @@ struct CalendarView: View {
         .padding(4)
     }
     
+    private func exportImage() {
+        // 1. Create an ImageRenderer with the CalendarView itself
+        let renderer = ImageRenderer(content: self)
+
+        // 2. Render the image with the current display scale
+        renderer.scale = UIScreen.main.scale
+
+        // 3. Capture the rendered UIImage (if successful)
+        if let uiImage = renderer.uiImage {
+          // 4. Update the renderedImage state for sharing
+          renderedImage = Image(uiImage: uiImage)
+        }
+      }
+    
     private func edit() {
         withAnimation {
             currentPerson?.name = text
@@ -97,15 +111,6 @@ struct CalendarView: View {
             isEditing = false
         }
     }
-//    @MainActor func render() {
-//        let renderer = ImageRenderer(content: CalendarView())
-//            // make sure and use the correct display scale for this device
-//        renderer.scale = displayScale
-//
-//        if let uiImage = renderer.uiImage {
-//            renderedImage = Image(uiImage: uiImage)
-//        }
-//    }
 }
 
 private extension CalendarView {
