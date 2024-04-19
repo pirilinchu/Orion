@@ -13,8 +13,7 @@ struct CalendarView: View {
     @State private var isEditing = false
     @State private var currentPerson: Person? = nil
     @State private var text: String = ""
-    @State private var renderedImage = Image(systemName: "photo")
-    
+    @State private var renderedImage: Image?
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
     let columnsDay: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 1), count: 2)
     let week: [String] = ["D", "L", "M", "M", "J", "V", "S"]
@@ -41,19 +40,23 @@ struct CalendarView: View {
             CalendarGrid()
             Spacer()
             HStack {
-                Button(action: exportImage) {
-                Label("", systemImage: "square.and.arrow.up")
-                    .foregroundColor(.white)
+//                Button("Render Image") {
+//                    let renderer = ImageRenderer(content: CalendarGrid())
+//                    renderer.scale = 3
+//                    if let image = renderer.cgImage {
+//                        renderedImage = Image(decorative: image, scale: 1.0)
+//                    }
+//                }
+//                .buttonStyle(.borderedProminent)
+                RenderedImageView(renderedImage: $renderedImage)
+                    .navigationTitle("Calendar")
+                if let renderedImage {
+                    ShareLink(item: renderedImage, preview: SharePreview(Text("Shared Calendar"), image: renderedImage)) {
+                    Label("", systemImage: "square.and.arrow.up")
+                        .foregroundColor(.white)
+                    }
+                    .padding()
                 }
-                .padding()
-                
-                Spacer()
-
-                ShareLink(item: renderedImage, preview: SharePreview(Text("Shared Calendar"), image: renderedImage)) {
-                Label("", systemImage: "square.and.arrow.up")
-                    .foregroundColor(.white)
-                }
-                .padding()
             }
         }
         .overlay {
@@ -90,19 +93,22 @@ struct CalendarView: View {
         .padding(4)
     }
     
-    private func exportImage() {
-        // 1. Create an ImageRenderer with the CalendarView itself
-        let renderer = ImageRenderer(content: self)
-
-        // 2. Render the image with the current display scale
-        renderer.scale = UIScreen.main.scale
-
-        // 3. Capture the rendered UIImage (if successful)
-        if let uiImage = renderer.uiImage {
-          // 4. Update the renderedImage state for sharing
-          renderedImage = Image(uiImage: uiImage)
-        }
-      }
+//    private func exportImage() {
+//        // 1. Create a UIHostingController with the CalendarView itself
+//        let controller = UIHostingController(rootView: CalendarGrid())
+//        controller.view.bounds = CGRect(x: 0, y: 0, width: 500, height: 500) // Specify the size you want
+//
+//        // 2. Begin image context
+//        let renderer = UIGraphicsImageRenderer(bounds: controller.view.bounds)
+//
+//        // 3. Render the image
+//        let image = renderer.image { _ in
+//            controller.view.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+//        }
+//
+//        // 4. Update the renderedImage state for sharing
+//        renderedImage = Image(uiImage: image)
+//    }
     
     private func edit() {
         withAnimation {
