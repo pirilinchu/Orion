@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2E860252BD20DDB000EBA52 /* RenderedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E860242BD20DDB000EBA52 /* RenderedImageView.swift */; };
 		FA2CC3CE2BC9EF98008064A2 /* OTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CC3CD2BC9EF98008064A2 /* OTextField.swift */; };
 		FA37D9652BBB2F620094589F /* OrionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D9642BBB2F620094589F /* OrionApp.swift */; };
 		FA37D9672BBB2F620094589F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37D9662BBB2F620094589F /* ContentView.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A2E860242BD20DDB000EBA52 /* RenderedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderedImageView.swift; sourceTree = "<group>"; };
 		FA2CC3CD2BC9EF98008064A2 /* OTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTextField.swift; sourceTree = "<group>"; };
 		FA37D9612BBB2F620094589F /* Orion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA37D9642BBB2F620094589F /* OrionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrionApp.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				FA37D9742BBB33620094589F /* YearPicker.swift */,
 				FA37D9782BBB3A6F0094589F /* MonthPicker.swift */,
 				FA37D97A2BBB49170094589F /* CalendarView.swift */,
+				A2E860242BD20DDB000EBA52 /* RenderedImageView.swift */,
 				FA37D97C2BBB9EEB0094589F /* PeopleView.swift */,
 			);
 			path = Orion;
@@ -169,6 +172,7 @@
 				FA37D9672BBB2F620094589F /* ContentView.swift in Sources */,
 				FA37D97B2BBB49170094589F /* CalendarView.swift in Sources */,
 				FA2CC3CE2BC9EF98008064A2 /* OTextField.swift in Sources */,
+				A2E860252BD20DDB000EBA52 /* RenderedImageView.swift in Sources */,
 				FA37D9772BBB39C50094589F /* OrionView.swift in Sources */,
 				FA37D97D2BBB9EEB0094589F /* PeopleView.swift in Sources */,
 				FA37D9652BBB2F620094589F /* OrionApp.swift in Sources */,
@@ -308,7 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Orion/Preview Content\"";
-				DEVELOPMENT_TEAM = JF5SBMV5PB;
+				DEVELOPMENT_TEAM = 9UX79BP8JN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Needed to save your image";
@@ -325,6 +329,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.Orion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -339,7 +345,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Orion/Preview Content\"";
-				DEVELOPMENT_TEAM = JF5SBMV5PB;
+				DEVELOPMENT_TEAM = 9UX79BP8JN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Needed to save your image";
@@ -356,6 +362,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.Orion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
