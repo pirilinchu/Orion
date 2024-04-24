@@ -40,23 +40,32 @@ struct CalendarView: View {
             CalendarGrid()
             Spacer()
             HStack {
-                Button("Render Image") {
-                    let renderer = ImageRenderer(content: CalendarGrid())
-                    renderer.scale = 3
-                    if let image = renderer.cgImage {
-                        renderedImage = Image(decorative: image, scale: 100)
-                    }
+                Spacer()
+                let csvFile = exportToCSV(data: appInfo.daysArray, filename: "calendario-\(appInfo.month?.title ?? "").csv")
+
+                ShareLink(item: csvFile) {
+                    Label("", systemImage: "square.and.arrow.up")
                 }
-                if let renderedImage {
-                    ShareLink(
-                        item: renderedImage,
-                        preview: SharePreview(Text("Calendario de \(appInfo.month?.title ?? "")"),
-                        image: renderedImage)) {
-                            Label("", systemImage: "square.and.arrow.up")
-                                .foregroundColor(.white)
-                        }
-                    .padding()
-                }
+
+//                HStack {
+//                    Button("Render Image") {
+//                        let renderer = ImageRenderer(content: CalendarGrid())
+//                        renderer.scale = 3
+//                        if let image = renderer.cgImage {
+//                            renderedImage = Image(decorative: image, scale: 100)
+//                        }
+//                    }
+//                }
+//                if let renderedImage {
+//                    ShareLink(
+//                        item: renderedImage,
+//                        preview: SharePreview(Text("Calendario de \(appInfo.month?.title ?? "")"),
+//                        image: renderedImage)) {
+//                            Label("", systemImage: "square.and.arrow.up")
+//                                .foregroundColor(.white)
+//                        }
+//                    .padding()
+//                }
             }
         }
         .overlay {
@@ -98,6 +107,26 @@ struct CalendarView: View {
             currentPerson?.name = text
             appInfo.edit(person: currentPerson)
             isEditing = false
+        }
+    }
+    
+    private func exportToCSV(data: [MyDay], filename: String) {
+        // Convert data to CSV string
+        var csvString = "Day,Person\n" // Header row
+        for day in data {
+            let dayString = "\(day.id),"
+            let peopleString = day.people.map { $0.name }.joined(separator: "|")
+            let rowString = "\(dayString)\(peopleString)\n"
+            csvString.append(rowString)
+        }
+        
+        // Write CSV string to file
+        let fileURL = URL(fileURLWithPath: filename)
+        do {
+            try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+            print("CSV file exported successfully: \(fileURL.path)")
+        } catch {
+            print("Error exporting CSV file: \(error)")
         }
     }
 }
