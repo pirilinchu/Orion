@@ -43,7 +43,7 @@ struct CalendarView: View {
             HStack {
                 Spacer()
                 let actualMonth = appInfo.month?.title ?? ""
-                let csvFile = exportToCSV(data: appInfo.daysArray, filename: "calendario-\(actualMonth).csv")
+                let csvFile = appInfo.exportToCSV(filename: "calendario-\(actualMonth).csv")
                 ShareLink(item: csvFile) {
                     Label("", systemImage: "square.and.arrow.up")
                 }
@@ -110,26 +110,6 @@ struct CalendarView: View {
             isEditing = false
         }
     }
-    
-    private func exportToCSV(data: [MyDay], filename: String) -> URL {
-        var csvString = "Día,Paciente(s)\n" // Header row
-        for day in data {
-            let dayString = "\(day.id),"
-//            let peopleString = day.people.map { $0.name }.joined(separator: "|")
-            let rowString = "\(dayString)\(/*peopleString*/dayString)\n"
-            csvString.append(rowString)
-        }
-        
-        let fileURL = URL(fileURLWithPath: filename)
-        do {
-            try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
-            print("CSV file exported successfully: \(fileURL.path)")
-        } catch {
-            print("Error exporting CSV file: \(error)")
-        }
-        return fileURL
-    }
-
 }
 
 private extension CalendarView {

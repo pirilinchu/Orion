@@ -109,6 +109,25 @@ final class AppInfo: ObservableObject {
 
         people[index] = person
     }
+
+    func exportToCSV(filename: String) -> URL {
+        var csvString = "Día,Paciente(s)\n" // Header row
+        for day in daysArray {
+            let dayString = "\(day.id),"
+//            let peopleString = day.people.map { $0.name }.joined(separator: "|")
+            let rowString = "\(dayString)\(/*peopleString*/dayString)\n"
+            csvString.append(rowString)
+        }
+
+        let fileURL = URL(fileURLWithPath: filename)
+        do {
+            try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+            print("CSV file exported successfully: \(fileURL.path)")
+        } catch {
+            print("Error exporting CSV file: \(error)")
+        }
+        return fileURL
+    }
 }
 
 struct MyDay: Identifiable {

@@ -36,7 +36,7 @@ struct PeopleView: View {
                         Button {
                             appInfo.people.removeAll(where: { $0.id == person.id })
                         } label: {
-                            Image(systemName: "minus.circle.fill")
+                            Image(systemName: OIcons.minus.systemImage)
                                 .resizable()
                                 .frame(width: 24, height: 24)
                                 .foregroundStyle(Color.primaryText)
@@ -48,12 +48,12 @@ struct PeopleView: View {
                 HStack {
                     OTextField(text: $textField)
                     Button {
-                        if !textField.isEmpty && isValidName(textField) {
+                        if !textField.isEmpty, textField.isValidName() {
                             appInfo.people.append(Person(color: Color.userColors[appInfo.people.count], name: textField))
                             textField = ""
                                                 }
                     } label: {
-                        Image(systemName: "plus.circle.fill")
+                        Image(systemName: OIcons.plus.systemImage)
                             .resizable()
                             .frame(width: 24, height: 24)
                             .foregroundStyle(Color.primaryText)
@@ -66,24 +66,10 @@ struct PeopleView: View {
         .cornerRadius(16)
     }
     
-    func isValidName(_ name: String) -> Bool {
-        let nameRegex = "[A-Za-z0-9 ]*"
-        let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
-        return namePredicate.evaluate(with: name)
-    }
+    
 }
 
 #Preview {
     PeopleView()
         .environmentObject(AppInfo())
-}
-
-extension Color {
-    static let user1 = Color(hex: "1E90FF")
-    static let user2 = Color(hex: "32CD32")
-    static let user3 = Color(hex: "FFA500")
-    static let user4 = Color(hex: "800080")
-    static let user5 = Color(hex: "FF0000")
-
-    static let userColors = [user1, user2, user3, user4, user5]
 }

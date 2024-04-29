@@ -21,7 +21,7 @@ struct MonthPicker: View {
                         .foregroundStyle(Color.primaryText)
                 }
             }
-            .pickerStyle(WheelPickerStyle()) // Use a wheel style picker
+            .pickerStyle(WheelPickerStyle())
             .clipped()
         }
         .padding(16)

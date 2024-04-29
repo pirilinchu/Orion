@@ -44,7 +44,7 @@ struct OrionView: View {
                 Button(action: {
                     appInfo.clearCalendar()
                 }) {
-                    Image(systemName: "repeat")
+                    Image(systemName: OIcons.repeatIcon.systemImage)
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .frame(height: 50)
                         .foregroundColor(.primaryBackground)
