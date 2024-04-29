@@ -19,7 +19,8 @@ struct OTextField: View {
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.gray, lineWidth: 1)
             )
-            .padding(8)    }
+            .padding(8)
+    }
 }
 
 #Preview {
