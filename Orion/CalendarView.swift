@@ -14,6 +14,7 @@ struct CalendarView: View {
     @State private var currentPerson: Person? = nil
     @State private var text: String = ""
     @State private var renderedImage: Image?
+    
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
     let columnsDay: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 1), count: 2)
     let week: [String] = ["D", "L", "M", "M", "J", "V", "S"]
@@ -41,8 +42,8 @@ struct CalendarView: View {
             Spacer()
             HStack {
                 Spacer()
-                let csvFile = exportToCSV(data: appInfo.daysArray, filename: "calendario-\(appInfo.month?.title ?? "").csv")
-
+                let actualMonth = appInfo.month?.title ?? ""
+                let csvFile = exportToCSV(data: appInfo.daysArray, filename: "calendario-\(actualMonth).csv")
                 ShareLink(item: csvFile) {
                     Label("", systemImage: "square.and.arrow.up")
                 }
@@ -59,7 +60,7 @@ struct CalendarView: View {
 //                if let renderedImage {
 //                    ShareLink(
 //                        item: renderedImage,
-//                        preview: SharePreview(Text("Calendario de \(appInfo.month?.title ?? "")"),
+//                        preview: SharePreview(Text("Calendario de \(actualMonth)"),
 //                        image: renderedImage)) {
 //                            Label("", systemImage: "square.and.arrow.up")
 //                                .foregroundColor(.white)
@@ -110,17 +111,15 @@ struct CalendarView: View {
         }
     }
     
-    private func exportToCSV(data: [MyDay], filename: String) {
-        // Convert data to CSV string
-        var csvString = "Day,Person\n" // Header row
+    private func exportToCSV(data: [MyDay], filename: String) -> URL {
+        var csvString = "Día,Paciente(s)\n" // Header row
         for day in data {
             let dayString = "\(day.id),"
-            let peopleString = day.people.map { $0.name }.joined(separator: "|")
-            let rowString = "\(dayString)\(peopleString)\n"
+//            let peopleString = day.people.map { $0.name }.joined(separator: "|")
+            let rowString = "\(dayString)\(/*peopleString*/dayString)\n"
             csvString.append(rowString)
         }
         
-        // Write CSV string to file
         let fileURL = URL(fileURLWithPath: filename)
         do {
             try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
@@ -128,7 +127,9 @@ struct CalendarView: View {
         } catch {
             print("Error exporting CSV file: \(error)")
         }
+        return fileURL
     }
+
 }
 
 private extension CalendarView {
